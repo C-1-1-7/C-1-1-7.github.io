@@ -1,49 +1,132 @@
-canvas {
-	position: absolute;
-	top: 0;
-	left: 0;
-}
-p {
-	margin: -50PX; 
-	position: absolute;
-	font: 16px Verdana;
-	color: #4e28d7;
-	height: 25px;
-	width: 100%; 
-	top: calc(96% - 50px); 
-	left: 3%; 
-	right: 0;
-	text-align: center; 
-	text-shadow: 0 0 2px rgb(246, 254, 0);
-	font-size: 200%;
-}
-p a {
-	text-decoration: none;
-	color: #d728c5;
-	font-size: 200%;
-}
-span {
-	font-size: 20px;
-}
-p > a:first-of-type {
-	font-size: 300px;
-
-}
 body {
-	overflow: hidden;
+  margin: 0;
+  overflow: hidden;
+  background: #e0cae0;
+  font-family: sans-serif;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0; /* Comienza invisible */
-    }
-    to {
-        opacity: 1; /* Termina visible */
-    }
+svg.root {
+  width: 1px;
+  height: 1px;
+  position: absolute;
+  left: -100em;
 }
 
-p, p a {
-    animation: fadeIn 1s ease-in 0.5s; /* Aplica la animación de aparición */
-    opacity: 0; /* Comienza invisible */
-    animation-fill-mode: forwards; /* Mantiene el estado final de la animación */
+svg {
+  width: 100vw;
+  height: 100vh;
+  fill-opacity: 0.8;
+}
+
+symbol { overflow: visible; }
+
+/* 🌈 CAMBIO DE COLOR */
+@keyframes cambiarColor {
+  0%   { fill: #ba3763; }
+  25%  { fill: #d34076; }
+  50%  { fill: #dbb0cc; }
+  75%  { fill: #eec0db; }
+  100% { fill: #ba3763; }
+}
+
+svg g.a {
+  transform: scale(1);
+  filter: url('#f');
+  animation: cambiarColor 6s linear infinite;
+}
+
+/* pétalos completos */
+._2 { --n: 2; }
+._3 { --n: 3; }
+._4 { --n: 4; }
+._5 { --n: 5; }
+
+svg .a g:nth-of-type(1){
+  transform: rotate(calc(-.5 * 180deg / var(--n)));
+}
+svg .a g:nth-of-type(2){
+  transform: rotate(calc(.5 * 180deg / var(--n)));
+}
+
+svg .a g:nth-of-type(1) use:nth-of-type(2){
+  transform: rotate(calc(-1deg * 180 / var(--n)));
+}
+svg .a g:nth-of-type(1) use:nth-of-type(3){
+  transform: rotate(calc(-2deg * 180 / var(--n)));
+}
+svg .a g:nth-of-type(1) use:nth-of-type(4){
+  transform: rotate(calc(-3deg * 180 / var(--n)));
+}
+svg .a g:nth-of-type(1) use:nth-of-type(5){
+  transform: rotate(calc(-4deg * 180 / var(--n)));
+}
+
+svg .a g:nth-of-type(2) use:nth-of-type(2){
+  transform: rotate(calc(1deg * 180 / var(--n)));
+}
+svg .a g:nth-of-type(2) use:nth-of-type(3){
+  transform: rotate(calc(2deg * 180 / var(--n)));
+}
+svg .a g:nth-of-type(2) use:nth-of-type(4){
+  transform: rotate(calc(3deg * 180 / var(--n)));
+}
+svg .a g:nth-of-type(2) use:nth-of-type(5){
+  transform: rotate(calc(4deg * 180 / var(--n)));
+}
+
+/* 👩 IMAGEN */
+.centro {
+  position: fixed;
+  top: 32%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+/* brillo animado */
+@keyframes brillo {
+  0% {
+    box-shadow: 0 0 15px rgba(186,55,99,0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(211,64,118,0.6);
+  }
+  100% {
+    box-shadow: 0 0 15px rgba(186,55,99,0.3);
+  }
+}
+
+.centro img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: none;
+
+  -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+  mask-image: radial-gradient(circle, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+
+  animation: brillo 3s ease-in-out infinite;
+}
+
+/* TEXTO */
+#texto2 {
+  position: fixed;
+  top: 52%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+  text-align: center;
+  color: rgba(5, 65, 118, 0.7);
+  max-width: 600px;
+}
+
+#texto1 {
+  position: fixed;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 32px;
+  font-weight: bold;
+  color: #0e0090;
 }
