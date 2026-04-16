@@ -1,0 +1,49 @@
+canvas {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+p {
+	margin: -50PX; 
+	position: absolute;
+	font: 16px Verdana;
+	color: #4e28d7;
+	height: 25px;
+	width: 100%; 
+	top: calc(96% - 50px); 
+	left: 3%; 
+	right: 0;
+	text-align: center; 
+	text-shadow: 0 0 2px rgb(246, 254, 0);
+	font-size: 200%;
+}
+p a {
+	text-decoration: none;
+	color: #d728c5;
+	font-size: 200%;
+}
+span {
+	font-size: 20px;
+}
+p > a:first-of-type {
+	font-size: 300px;
+
+}
+body {
+	overflow: hidden;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0; /* Comienza invisible */
+    }
+    to {
+        opacity: 1; /* Termina visible */
+    }
+}
+
+p, p a {
+    animation: fadeIn 1s ease-in 0.5s; /* Aplica la animación de aparición */
+    opacity: 0; /* Comienza invisible */
+    animation-fill-mode: forwards; /* Mantiene el estado final de la animación */
+}
